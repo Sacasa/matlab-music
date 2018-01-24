@@ -24,13 +24,13 @@ f=[F,2*F,3*F,4*F,5*F,6*F,7*F,8*F,9*F];
 
 %Enveloppe piano
 %Paramètres de l'enveloppe
-amplitude_de_separation = 0.8;
+amplitude_de_separation = 0.7;
 largeur_poly = 0.45;
 
 %Partie polynomiale de l'enveloppe ( attack)
 
 x1=[0,largeur_poly*0.5*T,largeur_poly*T];
-y1=[0.2,1,0.2];
+y1=[0.2,0.8,0.2];
 
  
 p= polyfit(x1,y1,2);
