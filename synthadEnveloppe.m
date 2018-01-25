@@ -13,10 +13,7 @@ t = 0:dt:T-dt;
 n = length(t);
 
 %Création des tableaux
-%a=[100,40,30,20,10,5,15,10,8];
-%f=[F,2*F,3*F,4*F,5*F,6*F,7*F,8*F,9*F];
-
-a=[66,100,22, 20,15,11,8,11];
+a=[45,32,2,7,4,2,5,1];
 f=[F,2*F,3*F,4*F,5*F,6*F,7*F,8*F];
 
 % %Création de l'enveloppe
@@ -26,31 +23,17 @@ f=[F,2*F,3*F,4*F,5*F,6*F,7*F,8*F];
 % R = linspace(0.8, 0, 0.15*(T*Fe)); 
 
 %Enveloppe piano
-%Paramètres de l'enveloppe
-amplitude_de_separation = 0.7;
-largeur_poly = 0.45;
-
-%Partie polynomiale de l'enveloppe ( attack)
-
-x1=[0,largeur_poly*0.5*T,largeur_poly*T];
-y1=[0.2,0.8,0.2];
-
- 
-p= polyfit(x1,y1,2);
-p(3) = p(3) - amplitude_de_separation;
-r = roots(p);
-xsep = r(1,1);
-p(3)= p(3) + amplitude_de_separation;
-
-x1i=(0:dt:round(xsep/dt)*dt);
-A=polyval(p,x1i);
-
-x2i=(round(xsep/dt)*dt+dt:dt:T-dt);
-D=amplitude_de_separation*exp(-(x2i-xsep)/xsep);
 
 
-Enveloppe = [A D];
-
+x = [0,0.1,0.2,0.5,0.92,1.2,1.5]; 
+v = [0,1,0.5,0.2,0.08,0.025,0];
+xq = 0:dt:1.5;
+Enveloppe = interp1(x,v,xq,'pchip');
+if length(t) <= length(Enveloppe)
+    Enveloppe = Enveloppe(1:length(t));
+else 
+    Enveloppe(numel(t)) = 0;
+end
 % creation du son, boucle pour ajouter une a une
 % les composantes frequentielles
 s = zeros(1,n);

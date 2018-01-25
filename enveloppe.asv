@@ -1,0 +1,59 @@
+
+T=1;
+Fe=44000;
+dt = 1/Fe;
+t = 0:dt:T-dt;
+n = length(t);
+f=440;
+
+
+
+% %Cr√©ation de l'enveloppe
+% A = linspace(0, 1, 0.1*(T*Fe)); 
+% D = linspace(1, 0.8, 0.15*(T*Fe));
+% S = linspace(0.8, 0.8, 0.6*(T*Fe)); 
+% R = linspace(0.8, 0, 0.15*(T*Fe)); 
+
+%Enveloppe piano
+%Param√®tres de l'enveloppe
+amplitude_de_separation = 0.8;
+largeur_poly = 0.5;
+
+%Partie polynomiale de l'enveloppe ( attack)
+
+x1=[0,largeur_poly*0.5*T,largeur_poly*T];
+y1=[0,1,0];
+
+ 
+p= polyfit(x1,y1,2);
+p(3) = p(3) - amplitude_de_separation;
+r = roots(p);
+xsep = r(1,1);
+p(3)= p(3) + amplitude_de_separation;
+
+x1i=(0:dt:round(xsep/dt)*dt);
+A=polyval(p,x1i);
+
+x2i=(round(xsep/dt)*dt+dt:dt:T-dt);
+D=amplitude_de_separation*exp(-(x2i-xsep)/xsep).^(1.7);
+
+Enveloppe = [A D];
+
+% creation du son, boucle pour ajouter une a une
+% les composantes frequentielles
+s = Enveloppe.*sin(2*pi*f*t);
+
+% normalisation pour que les valeurs soient
+% toutes dans l'intervalle [-1 +1]
+s = s/max(abs(s));
+
+x = [0,0.1,0.2,0.5,0.92,1.2,1.5]; 
+v = [0,1,0.5,0.2,,0.1,0.025,0];
+xq = 0:dt:1.5;
+vq1 = interp1(x,v,xq,'pchip');
+
+plot(x,v,'o',t,Enveloppe,'r',xq,vq1,'b');
+ylim([0 1])
+xlabel('Temps (s)')
+ylabel('Amplitude')
+title("ReprÈsentation d'un son pur ‡ 40Hz")
