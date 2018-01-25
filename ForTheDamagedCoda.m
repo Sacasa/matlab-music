@@ -13,6 +13,8 @@ fsol1 = 98;
 fla1 = 110;
 fsi1 = 123.47;
 
+fsol1d = 103.83;
+
 %Octave 2
 fdo2b = 138.59 ;
 fdo2 = 130.81;
@@ -23,6 +25,7 @@ fsol2 = 196;
 fla2 = 220;
 fsi2 = 246.94;
 
+fsol2d = 207.65;
 fre2d = 156;
 
 %Octave 3
@@ -39,7 +42,7 @@ fsi3 = 493.88;
 fre3d = 311 ;
 fdo3d= 277;
 fla3d= 466;
-
+fsol3d = 415.3;
 fre3b = 277 ;
 fla3b= 415;
 
@@ -98,6 +101,12 @@ do1nll = synthadEnveloppe(fdo1,T*0.25,Fe);
 re1nll = synthadEnveloppe(fre1,T*0.25,Fe);
 mi1nll = synthadEnveloppe(fmi1,T*0.25,Fe);
 
+sol1dnll = synthadEnveloppe(fsol1d,T*0.25,Fe);
+sol1dnl = synthadEnveloppe(fsol1d,T*0.5,Fe);
+
+sol1nll = synthadEnveloppe(fsol1,T*0.25,Fe);
+si1nll = synthadEnveloppe(fsi1,T*0.25,Fe);
+
 
 do1bn = synthadEnveloppe(fdo1b,T,Fe);
 do1n = synthadEnveloppe(fdo1,T,Fe);
@@ -121,6 +130,9 @@ si2nl = synthadEnveloppe(fsi2,T*0.5,Fe);
 
 re2dnl = synthadEnveloppe(fre2d,T*0.5,Fe);
 
+sol2dnll = synthadEnveloppe(fsol2d,T*0.25,Fe);
+sol2dnl = synthadEnveloppe(fsol2d,T*0.5,Fe);
+
 
 mi2b = synthadEnveloppe(fmi2,T*2,Fe);
 
@@ -131,6 +143,8 @@ mi2np = synthadEnveloppe(fmi2,T*1.5,Fe);
 do2nll = synthadEnveloppe(fdo2,T*0.25,Fe);
 re2nll = synthadEnveloppe(fre2,T*0.25,Fe);
 mi2nll = synthadEnveloppe(fmi2,T*0.25,Fe);
+sol2nll = synthadEnveloppe(fsol2,T*0.25,Fe);
+si2nll = synthadEnveloppe(fsi2,T*0.25,Fe);
 
 
 do2bn = synthadEnveloppe(fdo2b,T,Fe);
@@ -152,6 +166,9 @@ sol3nl = synthadEnveloppe(fsol3,T*0.5,Fe);
 la3nl = synthadEnveloppe(fla3,T*0.5,Fe);
 si3nl = synthadEnveloppe(fsi3,T*0.5,Fe);
 
+si3np = synthadEnveloppe(fsi3,T*1.25,Fe);
+si3nll = synthadEnveloppe(fsi3,T*0.25,Fe);
+
 re3b = synthadEnveloppe(fre3,T*2,Fe);
 do3b = synthadEnveloppe(fdo3,T*2,Fe);
 sol3b = synthadEnveloppe(fsol3,T*2,Fe);
@@ -166,6 +183,7 @@ re3bnl = synthadEnveloppe(fre3b,T*0.5,Fe);
 sol3bnl= synthadEnveloppe(fsol3b,T*0.5,Fe);
 la3bnl= synthadEnveloppe(fla3b,T*0.5,Fe);
 
+do3dnl = synthadEnveloppe(fdo3d,T*0.5,Fe);
 re3dnl = synthadEnveloppe(fre3d,T*0.5,Fe);
 sol3dnl= synthadEnveloppe(fsol3d,T*0.5,Fe);
 la3dnl= synthadEnveloppe(fla3d,T*0.5,Fe);
@@ -190,12 +208,27 @@ si4nl = synthadEnveloppe(fsi4,T*0.5,Fe);
 
 la4dn = synthadEnveloppe(fla4d,T*1,Fe);
 sol4dn = synthadEnveloppe(fsol4d,T*1,Fe);
+re4dn = synthadEnveloppe(fre4d,T*1,Fe);
+
+do4np = synthadEnveloppe(fdo4,T*1.25,Fe);
+
+
+
+do4ncp = synthadEnveloppe(fdo4,T*0.75,Fe);
+re4dncp = synthadEnveloppe(fre4d,T*0.75,Fe);
+re4ncp = synthadEnveloppe(fre4,T*0.75,Fe);
+sol4ncp = synthadEnveloppe(fsol4,T*0.75,Fe);
+sol4dncp = synthadEnveloppe(fsol4d,T*0.75,Fe);
 
 
 la4dnl = synthadEnveloppe(fla4d,T*0.5,Fe);
 re4dnl = synthadEnveloppe(fre4d,T*0.5,Fe);
 sol4dnl = synthadEnveloppe(fsol4d,T*0.5,Fe);
 
+si4nll = synthadEnveloppe(fsi4,T*0.25,Fe);
+re4nll = synthadEnveloppe(fre4,T*0.25,Fe);
+re4dnll = synthadEnveloppe(fre4d,T*0.25,Fe);
+fa4nll = synthadEnveloppe(ffa4,T*0.25,Fe);
 
 do4n = synthadEnveloppe(fdo4,T,Fe);
 re4n = synthadEnveloppe(fre4,T,Fe);
@@ -283,7 +316,13 @@ MelD=[ vide,vide,vide,vide...
        mean(cat(1,sol5n,sol6n),1),mean(cat(1,sol5dn,sol6dn),1),mean(cat(1,sol5n,sol6n),1), mean(cat(1,fa5nl,fa6nl),1), mean(cat(1,re5dnl,re5dnl),1)...
        mean(cat(1,re5dnl,re5dnl),1), do5nl, mean(cat(1,do5nl,re5dnl,sol5nl),1), mean(cat(1,do5nl,do6nl),1), mean(cat(1,la5dn,la6dn),1),  mean(cat(1,sol5dn,sol6dn),1) ...   
        mean(cat(1,sol5n,sol6n),1),  mean(cat(1,sol5dn,sol6dn),1),mean(cat(1,sol5n,sol6n),1),mean(cat(1,fa5nl,fa6nl),1), mean(cat(1,re5dnl,re6dnl),1)...
-];
+       ...
+       mean(cat(1,re4dn,re5dn),1), mean(cat(1,do4ncp,re4dncp,sol4ncp),1), do4np, mean(cat(1,do4ncp,re4dncp,sol4ncp),1)... #3.75
+       do4np, mean(cat(1,do4ncp,re4dncp,sol4ncp),1), do4np, mean(cat(1,do4ncp,re4dncp,sol4dncp),1)   ...#4 toujours 0.25 de retard
+       do4np, mean(cat(1,re4ncp,sol4ncp),1), si3np, mean(cat(1,si3nll,fa4nll),1), re4nll, re4nll, re4dnll...
+       
+       
+];  
 
 MelG=[ do3dnl, la3dnl, sol3nl, la3dnl, do3dnl,la3dnl, sol3nl, la3dnl ...
        do3dnl, la3dnl, sol3nl, la3dnl, do3dnl,la3dnl, sol3nl, la3dnl ...
@@ -304,11 +343,22 @@ MelG=[ do3dnl, la3dnl, sol3nl, la3dnl, do3dnl,la3dnl, sol3nl, la3dnl ...
        mean(cat(1,re2dnl,re3dnl),1), re2dnl, sol3nl, re2dnl,  mean(cat(1,si2nl,si3nl),1), si2nl, re3nl, si2nl...
        mean(cat(1,do2nl,do3nl),1), do2nl, re3dnl, do2nl,  mean(cat(1,re2nl,re3nl),1), re2nl, fa2nl, re2nl  ...
        mean(cat(1,re2dnl,re3dnl),1), re2dnl, sol3nl, re2dnl, mean(cat(1,si2nl,si3nl),1), si2nl, re3nl, si2nl ... #0:50
+       ...
+       mean(cat(1,do2nl,do3nl),1), do2nl, re3dnl,do2nl, mean(cat(1,do2nl,do3nl),1), do2nl, re3dnl, do2nl ...
+       mean(cat(1,do2nl,do3nl),1), do2nl, do3nl, do2nl, sol2dnll, sol1dnll, mean(cat(1,sol1dnl,sol2dnl),1),mean(cat(1,sol1dnl,sol2dnl),1),mean(cat(1,sol1dnl,sol2dnl),1)...
+       sol2nll, mean(cat(1,sol1nll,sol2nll),1),mean(cat(1,sol1nl,sol2nl),1),mean(cat(1,sol1nl,sol2nl),1),mean(cat(1,sol1nl,sol2nl),1),si2nll, mean(cat(1,si1nll,si2nll),1),mean(cat(1,si1nl,si2nl),1),mean(cat(1,si1nl,si2nl),1),mean(cat(1,si1nl,si2nl),1)...   
+       
+       
+       
+       
        
 ];
 
-MelG(numel(MelD)) = 0;
-    
+MelD(numel(MelG)) = 0;
+  
+audiowrite('melG.wav',MelG,Fe);
+audiowrite('melD.wav',MelD,Fe);
+
 %Mono
 
  Mel = cat(1,MelG,MelD);
