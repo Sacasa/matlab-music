@@ -1,5 +1,5 @@
 
-T=1.5;
+T=01.5
 Fe=44000;
 dt = 1/Fe;
 t = 0:dt:T-dt;
@@ -24,4 +24,4 @@ plot(x,v,'o',t,s,'r',t,Enveloppe,'b');
 ylim([0 1])
 xlabel('Temps (s)')
 ylabel('Amplitude')
-title("Représentation d'un son pur à 40Hz")
+title("Reprï¿½sentation d'un son pur ï¿½ 40Hz")

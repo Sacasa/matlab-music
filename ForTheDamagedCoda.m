@@ -356,9 +356,6 @@ MelG=[ do3dnl, la3dnl, sol3nl, la3dnl, do3dnl,la3dnl, sol3nl, la3dnl ...
 ];
 
 MelD(numel(MelG)) = 0;
-  
-audiowrite('melG.wav',MelG,Fe);
-audiowrite('melD.wav',MelD,Fe);
 
 %Mono
 
@@ -370,5 +367,8 @@ audiowrite('melD.wav',MelD,Fe);
 %Stereo
 MelG_s = mean(cat(1,0.7*MelG,0.3*MelD),1);
 MelD_s = mean(cat(1,0.7*MelD,0.3*MelG),1);
-Mel=[MelG_s;MelD_s];
-audiowrite('melStereo.wav',Mel.',Fe);
+
+Mel_G_c = chorus(MelG_s,1800);
+Mel_D_c = chorus(MelD_s,1800);
+Mel_c=[Mel_G_c;Mel_D_c];
+audiowrite('melStereoChorus.wav',Mel_c.',Fe);
