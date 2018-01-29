@@ -16,6 +16,7 @@ subplot(211)
 plot(t,s),grid                        %tracé temporel 
 xlabel('Temps(sec)');
 ylabel('Tracé temporel')
+title("Tracé temporel d'un La 3");
 
 
     
@@ -32,6 +33,8 @@ subplot(212)
 plot(f((N/2)+1:N)-Fe/2,abs(Sf(1:(N/2)))),grid
 xlabel('Fréquences (Hz)')
 ylabel('Tracé fréquentiel')
+title("Tracé fréquentiel d'un La 3");
+
 
 
 
