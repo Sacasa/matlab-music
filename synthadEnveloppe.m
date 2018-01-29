@@ -16,24 +16,15 @@ n = length(t);
 a=[45,32,2,7,4,2,5,1].*(100/45);
 f=[F,2*F,3*F,4*F,5*F,6*F,7*F,8*F];
 
-% %Création de l'enveloppe
-% A = linspace(0, 1, 0.1*(T*Fe)); 
-% D = linspace(1, 0.8, 0.15*(T*Fe));
-% S = linspace(0.8, 0.8, 0.6*(T*Fe)); 
-% R = linspace(0.8, 0, 0.15*(T*Fe)); 
-
 %Enveloppe piano
 
-x = [0,0.02,0.05,1.2,1.5]; 
+x = [0,0.02,0.05,1.2,1.5]/1.5*T; 
 v = [0,1,0.6,0.025,0];
-
-xq = 0:dt:1.5;
-Enveloppe = interp1(x,v,xq,'pchip');
-if length(t) <= length(Enveloppe)
-    Enveloppe = Enveloppe(1:length(t));
-else 
-    Enveloppe(numel(t)) = 0;
-end
+x = [0,0.05,0.1,0.5,0.92,1.2,1.5]/1.5*T; 
+v = [0,1,0.8,0.3,0.08,0.025,0];
+v= [0,1,0.6,0.3,0.2,0];
+x=[0,0.03,0.25,0.7,1.05,1.4]*T/1.4;
+Enveloppe = interp1(x,v,t,'pchip');
 % creation du son, boucle pour ajouter une a une
 % les composantes frequentielles
 s = zeros(1,n);

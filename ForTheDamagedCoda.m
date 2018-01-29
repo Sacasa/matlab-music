@@ -1,5 +1,3 @@
-clear all
-
 %##################################################
 %#                                                #
 %#              Constantes utiles                 #
@@ -93,31 +91,28 @@ fre6d = 2489;
 
 %##################################################
 %#                                                #
-%#              Création des notes                #
+%#              Creation des notes                #
 %#                                                #
 %##################################################
 
+%Blancs
+
 vide = zeros(1,length(t));
 vide05 = zeros(1,length(t)/2);
-%Octave 1
 
+%Octave 1
 
 sol1nl = synthadEnveloppe(fsol1,T*0.5,Fe);
 si1nl = synthadEnveloppe(fsi1,T*0.5,Fe);
-
 mi1b = synthadEnveloppe(fmi1,T*2,Fe);
-
 do1np = synthadEnveloppe(fdo1,T*1.5,Fe);
 re1np = synthadEnveloppe(fre1,T*1.5,Fe);
 mi1np = synthadEnveloppe(fmi1,T*1.5,Fe);
-
 do1nll = synthadEnveloppe(fdo1,T*0.25,Fe);
 re1nll = synthadEnveloppe(fre1,T*0.25,Fe);
 mi1nll = synthadEnveloppe(fmi1,T*0.25,Fe);
-
 sol1dnll = synthadEnveloppe(fsol1d,T*0.25,Fe);
 sol1dnl = synthadEnveloppe(fsol1d,T*0.5,Fe);
-
 sol1nll = synthadEnveloppe(fsol1,T*0.25,Fe);
 si1nll = synthadEnveloppe(fsi1,T*0.25,Fe);
 
@@ -131,10 +126,8 @@ fa2nl = synthadEnveloppe(ffa2,T*0.5,Fe);
 sol2nl = synthadEnveloppe(fsol2,T*0.5,Fe);
 si2nl = synthadEnveloppe(fsi2,T*0.5,Fe);
 re2dnl = synthadEnveloppe(fre2d,T*0.5,Fe);
-
 sol2dnll = synthadEnveloppe(fsol2d,T*0.25,Fe);
 sol2dnl = synthadEnveloppe(fsol2d,T*0.5,Fe);
-
 sol2nll = synthadEnveloppe(fsol2,T*0.25,Fe);
 si2nll = synthadEnveloppe(fsi2,T*0.25,Fe);
 
@@ -147,25 +140,18 @@ fa3nl = synthadEnveloppe(ffa3,T*0.5,Fe);
 sol3nl = synthadEnveloppe(fsol3,T*0.5,Fe);
 la3nl = synthadEnveloppe(fla3,T*0.5,Fe);
 si3nl = synthadEnveloppe(fsi3,T*0.5,Fe);
-
 si3np = synthadEnveloppe(fsi3,T*1.25,Fe);
 si3nll = synthadEnveloppe(fsi3,T*0.25,Fe);
-
 re3b = synthadEnveloppe(fre3,T*2,Fe);
 do3b = synthadEnveloppe(fdo3,T*2,Fe);
 sol3b = synthadEnveloppe(fsol3,T*2,Fe);
-
 do3db = synthadEnveloppe(fdo3d,T*2,Fe);
 re3dbr = synthadEnveloppe(fre3d,T*4,Fe);
-
 la3db= synthadEnveloppe(fla3d,T*2,Fe);
-
-
 do3dnl = synthadEnveloppe(fdo3d,T*0.5,Fe);
 re3dnl = synthadEnveloppe(fre3d,T*0.5,Fe);
 sol3dnl= synthadEnveloppe(fsol3d,T*0.5,Fe);
 la3dnl= synthadEnveloppe(fla3d,T*0.5,Fe);
-
 
 % Octave 4
 
@@ -213,7 +199,7 @@ re6dnl = synthadEnveloppe(fre6d,T*0.5,Fe);
 
 %##################################################
 %#                                                #
-%#          Création de la mélodie                #
+%#          Creation de la melodie                #
 %#          4 mesures par temps                   #
 %#                                                #
 %##################################################
@@ -275,20 +261,20 @@ MelG=[ do3dnl, la3dnl, sol3nl, la3dnl, do3dnl,la3dnl, sol3nl, la3dnl ...
 %##################################################
 %#                                                #
 %#                Traitements                     #
-%#           Stéréo/chorus/passe bas              #
+%#           Stereo/chorus/passe bas              #
 %#                                                #
 %##################################################
 
 
-%On complète de zéros pour avoir la même longueur sur les deux voies
+%On complete de zeros pour avoir la meme longueur sur les deux voies
 MelD(numel(MelG)) = 0;
 
-%On réhausse la composante plus aigus en vue du passe bas
+%On rehausse la composante plus aigus en vue du passe bas
 MelD=MelD*1.2;
 
 %Stereo
-%On choisit de faire un ratio de 70/30 pour que l'écoute soit correcte même
-%quand une seule des voies est présente
+%On choisit de faire un ratio de 70/30 pour que l'ecoute soit correcte meme
+%quand une seule des voies est presente
 
 MelG_s = (0.7*MelG)+(0.3*MelD); 
 MelG_s = MelG_s/max(abs(MelG_s));
